@@ -4,7 +4,9 @@
   any_errors_fatal: true
   become: yes
   roles:
-    - site.common
+  - site.common
+    - site.terraform
     - site.java
-    - gantsign.intellij
     - site.postman
+    - gantsign.intellij
+    - cmprescott.chrome
