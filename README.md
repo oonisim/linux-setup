@@ -99,8 +99,8 @@ Set the default Linux account (centos for CentOS EC2) that can sudo without pass
 Set the inventory name _aws_ to ENV_ID in env.yml which is used to tag the configuration items in AWS (e.g. EC2). The tags are then used to identify configuration items that belong to the enviornment, e.g. EC2 dynamic inventory hosts.
 
 
-### K8S
-In the directory, run run_k8s.sh. If DATADOG_API_KEY is not set, the 10_datadog module will cause errors.
+### Execution
+In the directory, run run.sh.
 
 ```
 .
