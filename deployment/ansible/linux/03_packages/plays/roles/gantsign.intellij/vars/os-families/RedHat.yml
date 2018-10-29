@@ -1,4 +1,0 @@
----
-# Dependencies for IntelliJ IDEA
-intellij_dependencies:
-  - libcanberra-gtk2
