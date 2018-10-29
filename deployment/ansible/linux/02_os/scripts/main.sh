@@ -32,7 +32,7 @@ fi
 . ${DIR}/_pretask.sh
 
 echo "#--------------------------------------------------------------------------------"
-echo "# starting ansible playbook (it may take a while in case of EC2)..."
+echo "# starting ansible playbook ..."
 echo "#--------------------------------------------------------------------------------"
 
 $(_locate ${DIR} '/' 'conductor.sh') \

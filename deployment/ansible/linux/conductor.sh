@@ -7,7 +7,9 @@
 # 2. ENVIRONMENT
 # 3. REMOTE_USER
 #--------------------------------------------------------------------------------
-set -eu
+set -eux
+
+ROOT_DIR=deployment
 
 if [ $# -lt 3 ] ; then
     echo "Insufficient argument"
@@ -25,8 +27,8 @@ ARGS=$@
 
 . ${PLAY_DIR}/../scripts/_utility.sh
 
-CONF_DIR=$(_locate ${DIR} '/' 'cluster/conf')
-TOOL_DIR=$(_locate ${DIR} '/' 'cluster/tools')
+CONF_DIR=$(_locate ${DIR} '/' "${ROOT_DIR}/conf")
+TOOL_DIR=$(_locate ${DIR} '/' "${ROOT_DIR}/tools")
 PLAYER=$(realpath "$(dirname $0)")/player.sh
 
 source ${CONF_DIR}/env/${ENVIRONMENT}/env.properties
