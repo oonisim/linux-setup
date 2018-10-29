@@ -1,0 +1,52 @@
+#--------------------------------------------------------------------------------
+# Database setup for the application.
+# [Note]
+# Beware which user to use.
+# - The database admin psql_user is to create the user.
+# - The database/application user APP_RDB_USER crates the databases.
+#--------------------------------------------------------------------------------
+- name: create a user {{ APP_USER }}.
+  postgresql_user:
+    name: "{{ APP_RDB_USER }}"
+#    db: "{{ APP_USER }}"
+    password: "{{ APP_RDB_PASS }}"
+    encrypted: no
+    role_attr_flags: CREATEDB,LOGIN,NOSUPERUSER
+    state: present
+  become: yes
+  become_method: sudo
+  become_user: "{{ psql_user }}"
+
+- name: create the default database {{ APP_USER }} for the user.
+  postgresql_db:
+    name: "{{ APP_RDB_USER }}"
+    owner: "{{ APP_RDB_USER }}"
+    login_user: "{{ APP_RDB_USER }}"
+    encoding: "{{ psql_encoding }}"
+    lc_ctype: "{{ psql_locale }}"
+    lc_collate: "{{ psql_locale }}"
+    template: template0         
+  become: yes
+  become_method: sudo
+  become_user: "{{ APP_USER }}"
+
+- name: create the application database {{ APP_RDB_NAME }} for the user.
+  postgresql_db:
+    name: "{{ APP_RDB_NAME }}"
+    owner: "{{ APP_RDB_USER }}"
+    login_user: "{{ APP_RDB_USER }}"
+    encoding: "{{ psql_encoding }}"
+    lc_ctype: "{{ psql_locale }}"
+    lc_collate: "{{ psql_locale }}"
+    template: template0
+  become: yes
+  become_method: sudo
+  become_user: "{{ APP_USER }}"
+
+- name: Verify the user can connect to the database.
+  command: psql -U {{ APP_USER }} -d {{ APP_RDB_NAME }}
+  become: yes
+  become_method: sudo
+  become_user: "{{ APP_USER }}"
+
+  

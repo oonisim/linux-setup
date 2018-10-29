@@ -1,0 +1,27 @@
+#--------------------------------------------------------------------------------
+# 24APR2017 Masayuki Onishi
+# Default Postgres is 9.2 on RHEL 7. Work with Postgres 9.5.
+# See https://www.postgresql.org/download/linux/redhat.
+#--------------------------------------------------------------------------------
+psql_version: 9.5
+psql_id: 95
+psql_locales:
+  - en_US.UTF-8
+  - en_AU.UTF-8
+psql_locale: en_US.UTF-8
+psql_encoding: UTF-8
+psql_daemon: postgresql-{{ psql_version }}
+psql_user: postgres
+psql_group: postgres
+psql_data_dir: "/var/lib/pgsql/{{ psql_version }}/data"
+psql_bin_path: "/usr/pgsql-{{ psql_version }}/bin"
+psql_config_path: "/var/lib/pgsql/{{ psql_version }}/data"
+psql_hba_conf: "{{ psql_config_path }}/pg_hba.conf"
+psql_rpm:
+#  - http://yum.postgresql.org/9.5/redhat/rhel-7-x86_64/pgdg-redhat95-9.5-2.noarch.rpm
+  - "https://download.postgresql.org/pub/repos/yum/9.5/redhat/rhel-7-x86_64/pgdg-redhat95-9.5-3.noarch.rpm"
+psql_packages:
+  - python-psycopg2
+  - postgresql{{psql_id}}-server
+  - postgresql{{psql_id}}-contrib
+  - pgadmin3

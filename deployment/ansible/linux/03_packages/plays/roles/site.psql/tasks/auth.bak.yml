@@ -1,0 +1,46 @@
+#--------------------------------------------------------------------------------
+# Configure Postgres peer authentication methods for the application user.
+#--------------------------------------------------------------------------------
+- name: Test if peer auth ACL exists for {{APP_USER}} in pg_hba.conf
+  shell: grep '^host[[:space:]]*all[[:space:]]*{{APP_USER}}[[:space:]]*.*md5.*$' {{psql_hba_conf}}
+  register: test_pg_hba
+  ignore_errors: true
+
+- name: Add md5 authentication for the user.
+  lineinfile:
+    path: "{{psql_hba_conf}}"
+    backup: true
+    #line: "local   all             {{ APP_USER }}                                md5"
+    line: "host   all             {{ APP_USER }}        127.0.0.1/32              md5"
+  when: test_pg_hba.stdout == ""
+
+- name: Add peer authentication for the user.
+  lineinfile:
+    path: "{{psql_hba_conf}}"
+    backup: true
+    line: "local   all             {{ APP_USER }}                                peer"
+  when: test_pg_hba.stdout == ""
+
+
+- name: Enable peer authentication for the postgres user.
+  replace:
+    path: "{{ psql_hba_conf }}"
+    backup: true
+    regexp: '^local(\s+)all(\s+)all(\s+)peer(\s*)$'
+    replace: 'local   all             {{ psql_user }}                                peer'
+
+- name: Enable password authentication for all users on host IPv4
+  replace:
+    path: "{{ psql_hba_conf }}"
+    backup: true
+    regexp: '^host(\s+)all(\s+)all(\s+)127.0.0.1/32(\s+)ident(\s*)$'
+    replace: 'host    all             all             127.0.0.1/32            md5'
+
+- name: Enable password authentication for all users on host IPv6
+  replace:
+    path: "{{ psql_hba_conf }}"
+    backup: true
+    regexp: '^host(\s+)all(\s+)all(\s+)::1/128(\s+)ident(\s*)$'
+    replace: 'host    all             all             ::1/128                 md5'
+
+

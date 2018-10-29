@@ -1,0 +1,57 @@
+#--------------------------------------------------------------------------------
+# RedHat PosrgreSQL installation & configuration
+# See https://www.postgresql.org/download/linux/redhat/.
+# Due to policies for Red Hat family distributions, the PostgreSQL installation
+# will not be enabled for automatic start or have the database initialized automatically.
+# To make your database installation complete, you need to perform these two steps:
+# 1. service postgresql initdb
+# 2. chkconfig postgresql on
+#--------------------------------------------------------------------------------
+- name: Install PSQL RPM first. Othrewise postgreql-server/contrib packages will fail.
+  yum:
+    name: "{{ item }}"
+    state: installed
+    update_cache: yes
+  with_items: "{{ psql_rpm }}"
+
+- name: Ensure PostgreSQL packages are installed.
+  yum:
+    name: "{{ item }}"
+    state: installed
+#    update_cache: yes
+  with_items: "{{ psql_packages }}"
+  
+- name: Ensure PostgreSQL data directory exists.
+  file:
+    path: "{{ psql_data_dir }}"
+    owner: "{{ psql_user }}"
+    group: "{{ psql_group }}"
+    state: directory
+    mode: 0700
+
+- name: Check if PostgreSQL database is initialized.
+  stat:
+    path: "{{ psql_data_dir }}/PG_VERSION"
+  register: pgdata_dir_version
+
+- name: Ensure no data directory before running init db
+  file:
+    path: "{{ psql_data_dir }}"
+    state: absent
+  when: not pgdata_dir_version.stat.exists    
+
+- name: Ensure PostgreSQL database is initialized.
+  shell: "{{ psql_bin_path }}/postgresql{{ psql_id }}-setup initdb"
+  args:
+    executable: /bin/bash    
+  when: not pgdata_dir_version.stat.exists
+  become: yes
+  # See: https://github.com/ansible/ansible/issues/16048#issuecomment-229012509
+  vars:
+    ansible_ssh_pipelining: true
+
+- name: Ensure PostgreSQL service is enabled.
+  command: "systemctl enable {{ psql_daemon }}.service"
+  become: true
+  become_user: root
+  become_method: sudo

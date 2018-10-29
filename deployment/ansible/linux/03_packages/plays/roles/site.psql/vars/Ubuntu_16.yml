@@ -1,0 +1,26 @@
+psql_version: 9.5
+psql_id: 95
+psql_locales:
+  - en_US.UTF-8
+  - en_AU.UTF-8
+psql_locale: en_US.UTF-8
+psql_encoding: UTF-8
+psql_daemon: postgresql
+psql_user: postgres
+psql_group: postgres
+psql_data_dir: "/var/lib/postgresql/{{ psql_version }}/main"
+psql_bin_path: "/usr/lib/postgresql/{{ psql_version }}/bin"
+psql_config_path: "/etc/postgresql/{{ psql_version }}/main"
+psql_hba_conf: "{{ psql_config_path }}/pg_hba.conf"
+psql_packages:
+  - python-psycopg2
+  - postgresql-{{ psql_version }}
+  - postgresql-contrib-{{ psql_version }}
+  - postgresql-client-{{ psql_version }}
+  - postgresql-common
+  - libpq-dev
+  - pgadmin3
+
+
+
+

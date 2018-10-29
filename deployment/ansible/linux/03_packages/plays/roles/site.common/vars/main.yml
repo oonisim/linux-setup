@@ -1,0 +1,14 @@
+packages:
+  - jq
+  - telnet
+  - wget
+  - curl
+  - htop
+  - atop
+  - nethogs
+  - iftop
+  - zip
+  - unzip
+  - emacs
+  - nano
+  - git

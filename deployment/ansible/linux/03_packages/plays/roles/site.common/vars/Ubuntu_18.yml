@@ -1,0 +1,7 @@
+dist_packages:
+  - dnsutils
+  - cgroup-bin
+  - cgroup-lite
+  - cgroup-tools
+  - cgroupfs-mount
+  - libcgroup1

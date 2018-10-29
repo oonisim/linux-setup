@@ -1,0 +1,10 @@
+---
+- name: package installations
+  hosts: environment
+  any_errors_fatal: true
+  become: yes
+  roles:
+    - site.common
+    - site.java
+    - gantsign.intellij
+    - site.postman

@@ -1,0 +1,7 @@
+- include_vars: "{{ ansible_distribution }}_{{ ansible_distribution_major_version}}.yml"
+- include: os.yml
+- include: "{{ ansible_distribution }}_{{ ansible_distribution_major_version}}.yml"
+- include: acl.yml
+- include: restart.yml
+- include: db.yml
+
