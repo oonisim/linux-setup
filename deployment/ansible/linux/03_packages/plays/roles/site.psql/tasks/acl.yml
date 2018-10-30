@@ -1,8 +1,0 @@
-- name: Setup pg_hba.conf for ACL.
-  template:
-    src   : pg_hba.conf.j2
-    dest  : "{{ psql_hba_conf }}"
-    owner : "{{ psql_user }}"
-    group : "{{ psql_group }}"
-    mode  : u=rw,g=r
-    backup: true

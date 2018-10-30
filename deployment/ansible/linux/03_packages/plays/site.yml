@@ -4,11 +4,11 @@
   any_errors_fatal: true
   become: yes
   roles:
-  - role: site.awscli
   - role: site.common
-  - role: site.terraform
   - role: site.java
   - role: site.postman
+  - role: site.awscli
+  - role: site.terraform
   - role: gantsign.intellij
   - role: cmprescott.chrome
   - role: site.tor

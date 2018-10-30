@@ -1,4 +1,0 @@
-- name: Restart postgresql
-  service: "name={{ psql_daemon }} state=restarted"
-  become: yes
-  become_method: sudo
