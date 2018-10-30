@@ -1,8 +1,13 @@
+#--------------------------------------------------------------------------------
+# AWS CLI installation (global site-package)
+# https://pypi.org/project/awscli/
 # https://docs.aws.amazon.com/cli/latest/userguide/installing.html
+#--------------------------------------------------------------------------------
 - name: AWS CLI install
   pip:
     name: "awscli"
     state: present
+    # https://unix.stackexchange.com/questions/429717
     extra_args: "--upgrade --force-reinstall"
 
 - name: AWS CLI validation
