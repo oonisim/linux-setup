@@ -7,7 +7,7 @@
 # 2. ENVIRONMENT
 # 3. REMOTE_USER
 #--------------------------------------------------------------------------------
-set -eux
+set -eu
 
 ROOT_DIR=deployment
 
@@ -30,9 +30,6 @@ ARGS=$@
 CONF_DIR=$(_locate ${DIR} '/' "${ROOT_DIR}/conf")
 TOOL_DIR=$(_locate ${DIR} '/' "${ROOT_DIR}/tools")
 PLAYER=$(realpath "$(dirname $0)")/player.sh
-
-source ${CONF_DIR}/env/${ENVIRONMENT}/env.properties
-source ${CONF_DIR}/env/${ENVIRONMENT}/server.properties
 
 #--------------------------------------------------------------------------------
 # Go to the playbook directory.
@@ -59,8 +56,8 @@ ln -sf ${CONF_DIR}/ansible/callbacks
 #VAULT_PASS=$(${TOOL_DIR}/decrypt.sh ${DECRYPT_KEY_FILE} ${VAULT_PASS_FILE})
 #${PLAYER} ${VAULT_PASS} ${REMOTE_USER} ${ARGS}
 
-#ansible-playbook -vvvv -i hosts --limit "environment" --user ${REMOTE_USER} ${ARGS} site.yml --vault-password-file ~/.secret/.vault_pass.txt
-ansible-playbook -vvvv -i hosts --limit "environment" --user ${REMOTE_USER} ${ARGS} site.yml
+ansible-playbook -vvvv -i hosts --limit "environment" --user ${REMOTE_USER} ${ARGS} site.yml --vault-password-file ~/.ansible/.vault_pass.txt
+#ansible-playbook -vvvv -i hosts --limit "environment" --user ${REMOTE_USER} ${ARGS} site.yml
 
 #--------------------------------------------------------------------------------
 # Clean up

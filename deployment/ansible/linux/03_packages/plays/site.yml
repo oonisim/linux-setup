@@ -4,9 +4,14 @@
   any_errors_fatal: true
   become: yes
   roles:
-  - site.common
-    - site.terraform
-    - site.java
-    - site.postman
-    - gantsign.intellij
-    - cmprescott.chrome
+  - role: site.awscli
+  - role: site.common
+  - role: site.terraform
+  - role: site.java
+  - role: site.postman
+  - role: gantsign.intellij
+  - role: cmprescott.chrome
+  - role: site.tor
+  - role: vmware.vmware-workstation
+    vars:
+      workstation_license: "{{ vmware_workstation_license }}"
