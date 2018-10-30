@@ -106,7 +106,6 @@ In the directory, run run.sh.
 .
 ├── deployment
 ├── maintenance.sh
-├── master       <---- Make sure master node information is set in this file
 └── run.sh       <---- Run this script
 ```
 
