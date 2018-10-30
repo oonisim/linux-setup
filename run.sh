@@ -26,7 +26,7 @@ fi
 ${DIR}/maintenance.sh
 for module in $(find ./deployment/ansible/linux -type d -maxdepth 1 -mindepth 1 | sort)
 do
-echo    ${module}/scripts/main.sh \
+    ${module}/scripts/main.sh \
         ${TARGET_INVENTORY} \
         ${REMOTE_USER}
 
