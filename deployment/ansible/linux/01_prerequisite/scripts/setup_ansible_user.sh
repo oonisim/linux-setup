@@ -10,7 +10,7 @@ GROUP='ansible'
 SUDO_GROUP='sudo'
 
 #--------------------------------------------------------------------------------
-# Accout setup
+# Account setup
 #--------------------------------------------------------------------------------
 if [ $(getent group ${GROUP}) ]; then
   echo "group ${GROUP} exists."
@@ -24,17 +24,15 @@ else
 fi
 
 #--------------------------------------------------------------------------------
-# SSH public authentiation setup
+# SSH public authentication setup
 #--------------------------------------------------------------------------------
-AUTH_KEY_DIR="$(sudo -i -u ${USER} pwd)/.ssh"
-AUTH_KEY_FILE="${AUTH_KEY_DIR}/authorized_keys"
-
-sudo -i -u ${USER} mkdir -p ${AUTH_KEY_DIR}
-sudo -i -u ${USER} touch    ${AUTH_KEY_FILE}
-
 echo "Provide public key text>"
 read key
 
+AUTH_KEY_DIR="$(sudo -i -u ${USER} pwd)/.ssh"
+AUTH_KEY_FILE="${AUTH_KEY_DIR}/authorized_keys"
+sudo -i -u ${USER} mkdir -p ${AUTH_KEY_DIR}
+sudo -i -u ${USER} touch    ${AUTH_KEY_FILE}
 
 sudo -i -u ${USER} grep -q -F "${key}" ${AUTH_KEY_FILE}
 if [ $? -ne 0  ]; then
@@ -42,3 +40,8 @@ if [ $? -ne 0  ]; then
 fi
 
 sudo -i -u ${USER} chmod -R go-rwx ${AUTH_KEY_DIR}
+
+#--------------------------------------------------------------------------------
+# Sudoers setup
+#--------------------------------------------------------------------------------
+sudo /bin/bash -c "echo ${USER} ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/${USER}
