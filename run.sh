@@ -23,10 +23,10 @@ fi
 #--------------------------------------------------------------------------------
 # Run K8S setup
 #--------------------------------------------------------------------------------
-./maintenance.sh
-for module in $(find ./deployment/ansible/inux -type d -maxdepth 1 -mindepth 1)
+${DIR}/maintenance.sh
+for module in $(find ./deployment/ansible/linux -type d -maxdepth 1 -mindepth 1 | sort)
 do
-    ${module}/scripts/main.sh \
+echo    ${module}/scripts/main.sh \
         ${TARGET_INVENTORY} \
         ${REMOTE_USER}
 
