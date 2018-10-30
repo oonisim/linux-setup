@@ -12,6 +12,6 @@
   - role: gantsign.intellij
   - role: cmprescott.chrome
   - role: site.tor
-  - role: vmware.vmware-workstation
+#  - role: vmware.vmware-workstation
     vars:
       workstation_license: "{{ vmware_workstation_license }}"

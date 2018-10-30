@@ -21,7 +21,7 @@ else
 fi
 
 #--------------------------------------------------------------------------------
-# Run K8S setup
+# Run setup
 #--------------------------------------------------------------------------------
 ${DIR}/maintenance.sh
 for module in $(find ./deployment/ansible/linux -type d -maxdepth 1 -mindepth 1 | sort)
