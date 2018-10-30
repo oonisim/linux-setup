@@ -3,7 +3,7 @@
 # Run on the Ansible target machine.
 # Setup the REMOTE_USER that Ansible master use to ssh-into the target.
 #--------------------------------------------------------------------------------
-set -ux
+set -u
 
 USER='ansible'
 GROUP='ansible'
