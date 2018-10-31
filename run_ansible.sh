@@ -7,6 +7,7 @@ cd ${DIR}
 # SSH
 #--------------------------------------------------------------------------------
 echo "Run setup.sh in the pre-requisite module to setup Ansible on master"
+echo "Make sure to set ansible valut password in .ansible/.vault_pass.txt"
 echo "Make sure SSH keys have been ceated and ssh agent & add have been executed"
 ssh-add
 
@@ -18,6 +19,8 @@ export TOOL_DIR=${DIR}/tools
 export SCRIPT_BASE=${DIR}/scripts/ansible
 export SCRIPT_SET=linux
 export SCRIPT_DIR=${SCRIPT_BASE}/${SCRIPT_SET}
+
+export ANSIBLE_COW_SELECTION=tux
 
 #--------------------------------------------------------------------------------
 # Target environment/inventory and Ansibe remote_user to use
