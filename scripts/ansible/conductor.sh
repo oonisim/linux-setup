@@ -23,10 +23,13 @@ REMOTE_USER=$3
 shift 3
 ARGS=$@
 
-. ${DIR}/_utility.sh
+#CONF_DIR=${CONF_DIR:?'Set CONF_DIR'}
+#TOOL_DIR=${TOOL_DIR:?'Set TOOL_DIR'}
 
-CONF_DIR=${CONF_DIR:?'Set CONF_DIR'}
-TOOL_DIR=${TOOL_DIR:?'Set TOOL_DIR'}
+. ${DIR}/_utility.sh
+CONF_DIR=$(_locate ${DIR} '/' 'conf')
+TOOL_DIR=$(_locate ${DIR} '/' 'tools')
+
 PLAYER=${DIR}/player.sh
 
 #--------------------------------------------------------------------------------

@@ -13,7 +13,11 @@ do
     ansible-galaxy install --roles-path ${_ROLE_DIR} ${role}
 done
 
-
+#--------------------------------------------------------------------------------
+# R & R Server (using https://github.com/Oefenweb repositories)
+# R server service starts and listesn on 8787 (login with Linux account credential).
+#--------------------------------------------------------------------------------
+echo "Downloading R & R Server (using https://github.com/Oefenweb repositories) ..."
 mkdir -p ${_ROLE_DIR}/oefenweb_r && \
 curl -L https://github.com/Oefenweb/ansible-r/tarball/master |\
 tar -xz --overwrite --strip 1 -C ${_ROLE_DIR}/oefenweb_r
