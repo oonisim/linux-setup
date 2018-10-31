@@ -27,7 +27,7 @@ ARGS=$@
 #TOOL_DIR=${TOOL_DIR:?'Set TOOL_DIR'}
 
 . ${DIR}/_utility.sh
-CONF_DIR=$(_locate ${DIR} '/' 'conf')
+CONF_DIR=$(_locate ${DIR} '/' 'conf/ansible')
 TOOL_DIR=$(_locate ${DIR} '/' 'tools')
 
 PLAYER=${DIR}/player.sh
