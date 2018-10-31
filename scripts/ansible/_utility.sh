@@ -6,7 +6,7 @@ _locate(){
     START=$1; END=$2; PATTERN=$3
 
     path="${START}"
-    while [[ $path != ${END} ]];
+    until [[ ${END} > $path ]]
     do
         #find "$path" -maxdepth 1 -mindepth 1 -path "*/${PATTERN}" | egrep '.*'
         find "$path" -path "*/${PATTERN}" | egrep '.*'

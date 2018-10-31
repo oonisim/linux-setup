@@ -35,7 +35,7 @@ echo "#-------------------------------------------------------------------------
 echo "# starting ansible playbook ..."
 echo "#--------------------------------------------------------------------------------"
 
-$(_locate ${DIR} '/' 'conductor.sh') \
+$(_locate ${DIR} "${SCRIPT_BASE}" 'conductor.sh') \
   ${PLAYBOOK_DIR} \
   ${TARGET} \
   ${REMOTE_USER} \

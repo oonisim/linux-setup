@@ -4,6 +4,21 @@ DIR=$(realpath $(dirname $0))
 cd ${DIR}
 
 #--------------------------------------------------------------------------------
+# SSH
+#--------------------------------------------------------------------------------
+echo "Make sure SSH agent has been executed"
+ssh-add
+
+#--------------------------------------------------------------------------------
+# Global directories
+#--------------------------------------------------------------------------------
+export CONF_DIR=${DIR}/conf/ansible
+export TOOL_DIR=${DIR}/tools
+export SCRIPT_BASE=${DIR}/scripts/ansible
+export SCRIPT_SET=linux
+export SCRIPT_DIR=${SCRIPT_BASE}/${SCRIPT_SET}
+
+#--------------------------------------------------------------------------------
 # Target environment/inventory and Ansibe remote_user to use
 #--------------------------------------------------------------------------------
 if [ -z ${TARGET_INVENTORY+x} ]; then
@@ -24,10 +39,9 @@ fi
 # Run setup
 #--------------------------------------------------------------------------------
 ${DIR}/maintenance.sh
-for module in $(find ./deployment/ansible/linux -type d -maxdepth 1 -mindepth 1 | sort)
+for module in $(find ${SCRIPT_DIR} -type d -maxdepth 1 -mindepth 1 | sort)
 do
     ${module}/scripts/main.sh \
         ${TARGET_INVENTORY} \
         ${REMOTE_USER}
-
 done

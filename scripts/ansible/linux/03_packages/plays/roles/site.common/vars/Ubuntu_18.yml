@@ -5,3 +5,4 @@ dist_packages:
   - cgroup-tools
   - cgroupfs-mount
   - libcgroup1
+  - gnome-tweak-tool

@@ -1,3 +1,4 @@
 # EPEL is requrired for CentOS/RHEL
 tor_packages:
-  - tor
+  #- tor
+  - torbrowser-launcher

@@ -4,14 +4,12 @@
 #--------------------------------------------------------------------------------
 set -eu
 
-
 #--------------------------------------------------------------------------------
 # PLAYBOOK_DIR: ../plays as convention
 # TARGET:       Target environment
 # REMOTE_USER:  SSH user on the remote server
 #--------------------------------------------------------------------------------
 DIR=$(realpath $(dirname $0))
-
 PLAYBOOK_DIR=$(realpath "$(dirname $0)/../plays")
 if [ $# -ge 2 ]; then
     TARGET=$1
@@ -37,7 +35,7 @@ echo "#-------------------------------------------------------------------------
 echo "# starting ansible playbook ..."
 echo "#--------------------------------------------------------------------------------"
 
-$(_locate ${DIR} '/' 'conductor.sh') \
+$(_locate ${DIR} "${SCRIPT_BASE}" 'conductor.sh') \
   ${PLAYBOOK_DIR} \
   ${TARGET} \
   ${REMOTE_USER} \

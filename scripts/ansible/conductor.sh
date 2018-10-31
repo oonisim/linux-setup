@@ -9,8 +9,6 @@
 #--------------------------------------------------------------------------------
 set -eu
 
-ROOT_DIR=deployment
-
 if [ $# -lt 3 ] ; then
     echo "Insufficient argument"
     echo "$0 PLAYBOOK_DIR ENVIRONMENT REMOTE_USER"
@@ -25,11 +23,11 @@ REMOTE_USER=$3
 shift 3
 ARGS=$@
 
-. ${PLAY_DIR}/../scripts/_utility.sh
+. ${DIR}/_utility.sh
 
-CONF_DIR=$(_locate ${DIR} '/' "${ROOT_DIR}/conf")
-TOOL_DIR=$(_locate ${DIR} '/' "${ROOT_DIR}/tools")
-PLAYER=$(realpath "$(dirname $0)")/player.sh
+CONF_DIR=${CONF_DIR:?'Set CONF_DIR'}
+TOOL_DIR=${TOOL_DIR:?'Set TOOL_DIR'}
+PLAYER=${DIR}/player.sh
 
 #--------------------------------------------------------------------------------
 # Go to the playbook directory.
@@ -42,10 +40,10 @@ cd ${PLAY_DIR}
 rm -rf \
     ${PLAY_DIR}/{callbacks,group_vars,ansible.cfg,hosts}
 
-cp -r  ${CONF_DIR}/ansible/inventories/${ENVIRONMENT}/inventory hosts
-ln -sf ${CONF_DIR}/ansible/inventories/${ENVIRONMENT}/group_vars
-ln -sf ${CONF_DIR}/ansible/ansible.cfg
-ln -sf ${CONF_DIR}/ansible/callbacks
+cp -r  ${CONF_DIR}/inventories/${ENVIRONMENT}/inventory hosts
+ln -sf ${CONF_DIR}/inventories/${ENVIRONMENT}/group_vars
+ln -sf ${CONF_DIR}/ansible.cfg
+ln -sf ${CONF_DIR}/callbacks
 
 
 
