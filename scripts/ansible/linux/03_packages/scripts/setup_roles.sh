@@ -1,6 +1,6 @@
 #!/bin/bash
 _DIR=$(realpath $(dirname $0))
-_ROLE_DIR="${_DIR}/../plays/roles}"
+_ROLE_DIR="${_DIR}/../plays/roles"
 
 roles=(
     "gantsign.intellij"
