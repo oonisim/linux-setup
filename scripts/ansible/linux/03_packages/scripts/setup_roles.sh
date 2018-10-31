@@ -14,5 +14,10 @@ do
 done
 
 
-mkdir -p oefenweb_r              && curl -L https://github.com/Oefenweb/ansible-r/tarball/master              | tar -xz --overwrite --strip 1 -C oefenweb_r
-mkdir -p oefenweb_rstudio_server && curl -L https://github.com/Oefenweb/ansible-rstudio-server/tarball/master | tar -xz --overwrite --strip 1 -C oefenweb_rstudio_server
+mkdir -p ${_ROLE_DIR}/oefenweb_r && \
+curl -L https://github.com/Oefenweb/ansible-r/tarball/master |\
+tar -xz --overwrite --strip 1 -C ${_ROLE_DIR}/oefenweb_r
+
+mkdir -p ${_ROLE_DIR}/oefenweb_rstudio_server && \
+curl -L https://github.com/Oefenweb/ansible-rstudio-server/tarball/master |\
+tar -xz --overwrite --strip 1 -C ${_ROLE_DIR}/oefenweb_rstudio_server
