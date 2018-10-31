@@ -45,3 +45,5 @@ sudo -i -u ${USER} chmod -R go-rwx ${AUTH_KEY_DIR}
 # Sudoers setup
 #--------------------------------------------------------------------------------
 echo "${USER} ALL=(ALL:ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/${USER}
+
+echo "done"

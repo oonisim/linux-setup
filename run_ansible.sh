@@ -6,7 +6,8 @@ cd ${DIR}
 #--------------------------------------------------------------------------------
 # SSH
 #--------------------------------------------------------------------------------
-echo "Make sure SSH agent has been executed"
+echo "Run setup.sh in the pre-requisite module to setup Ansible on master"
+echo "Make sure SSH keys have been ceated and ssh agent & add have been executed"
 ssh-add
 
 #--------------------------------------------------------------------------------
