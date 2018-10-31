@@ -60,5 +60,6 @@ ansible-playbook -vvvv -i hosts --limit "environment" --user ${REMOTE_USER} ${AR
 #--------------------------------------------------------------------------------
 # Clean up
 #--------------------------------------------------------------------------------
+set -x
 rm -rf \
     ${PLAY_DIR}/{callbacks,group_vars,ansible.cfg,hosts}
