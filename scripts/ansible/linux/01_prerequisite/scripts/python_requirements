@@ -2,6 +2,7 @@
 PyYAML
 Jinja2
 httplib2
+python-apt
 
 # Ansible
 ansible==2.7.1

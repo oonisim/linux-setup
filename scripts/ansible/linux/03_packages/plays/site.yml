@@ -12,6 +12,27 @@
   - role: gantsign.intellij
   - role: cmprescott.chrome
   - role: site.tor
-#  - role: vmware.vmware-workstation
+  #--------------------------------------------------------------------------------
+  # VMWare workstation
+  #--------------------------------------------------------------------------------
+  # - role: vmware.vmware-workstation
+  #   vars:
+  #     workstation_license: "{{ vmware_workstation_license }}"
+  #--------------------------------------------------------------------------------
+  # R (https://github.com/Oefenweb/ansible-r)
+  #--------------------------------------------------------------------------------
+  - role: oefenweb_r
     vars:
-      workstation_license: "{{ vmware_workstation_license }}"
+      r_install_dev: true
+      r_install:
+        - r-recommended
+      r_packages:
+        - name: dplyr
+        - name: Biobase
+          type: bioconductor
+        - name: mangothecat/franc
+          type: github
+  #--------------------------------------------------------------------------------
+  # R Server (https://github.com/Oefenweb/ansible-rstudio-server)
+  #--------------------------------------------------------------------------------
+  - role: oefenweb_rstudio_server
