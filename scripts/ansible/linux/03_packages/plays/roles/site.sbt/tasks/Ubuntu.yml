@@ -14,5 +14,6 @@
     state: present
   with_items: "{{ sbt_packages }}"
 
-- name: Verify SBT
-  command: "sbt about"
+# Take too long
+#- name: Verify SBT
+#  command: "sbt about"
