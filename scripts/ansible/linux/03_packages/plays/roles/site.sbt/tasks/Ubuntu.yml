@@ -12,7 +12,7 @@
   package:
     name: "{{ item }}"
     state: present
-  with: "{{ sbt_packages }}"
+  with_items: "{{ sbt_packages }}"
 
 - name: Verify SBT
   command: "sbt about"
