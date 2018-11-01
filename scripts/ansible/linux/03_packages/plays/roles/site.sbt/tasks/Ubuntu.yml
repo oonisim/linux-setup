@@ -4,7 +4,7 @@
     id: "{{ apt_key_sbt }}"
 
 - name: Add the SBT repository to source list
- apt_repository:
+  apt_repository:
     repo: "{{ apt_repository_sbt }}"
     state: present
 
