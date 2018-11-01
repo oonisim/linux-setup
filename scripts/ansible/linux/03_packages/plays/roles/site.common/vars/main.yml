@@ -12,3 +12,4 @@ packages:
   - emacs
   - nano
   - git
+  - openssh-server

@@ -4,13 +4,15 @@
   any_errors_fatal: true
   become: yes
   roles:
-  - role: site.docker
+  - role: site.ansible
   - role: site.common
   - role: site.java
   - role: site.sbt
   - role: site.awscli
+  - role: site.ansible
   - role: site.terraform
   - role: site.postman
+  - role: site.docker
   - role: site.tor
   #--------------------------------------------------------------------------------
   # IDEA (https://galaxy.ansible.com/gantsign/intellij)
