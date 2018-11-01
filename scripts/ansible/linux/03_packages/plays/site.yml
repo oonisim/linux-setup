@@ -4,9 +4,10 @@
   any_errors_fatal: true
   become: yes
   roles:
+  - role: site.sbt
+  - role: andrewrothstein.anaconda
   - role: site.common
   - role: site.java
-  - role: site.sbt
   - role: site.awscli
   - role: site.terraform
   - role: site.postman
@@ -49,4 +50,3 @@
   # Anaconda
   # https://galaxy.ansible.com/andrewrothstein/anaconda
   #--------------------------------------------------------------------------------
-  - role: andrewrothstein.anaconda
