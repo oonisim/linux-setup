@@ -6,9 +6,10 @@
   roles:
   - role: site.common
   - role: site.java
-  - role: site.postman
+  - role: site.sbt
   - role: site.awscli
   - role: site.terraform
+  - role: site.postman
   - role: site.tor
   #--------------------------------------------------------------------------------
   # IDEA (https://galaxy.ansible.com/gantsign/intellij)
