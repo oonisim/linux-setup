@@ -4,6 +4,7 @@ ansible_prerequisites:
   - libffi-dev
   - python-dev
   - python-setuptools
+  - python-pip
   - cowsay
 
 ansible_pip_packages:
@@ -11,5 +12,4 @@ ansible_pip_packages:
   - Jinja2
   - httplib2
   - python-apt
-  - python-pip
   - ansible
