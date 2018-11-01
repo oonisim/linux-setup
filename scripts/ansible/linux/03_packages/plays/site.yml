@@ -9,9 +9,15 @@
   - role: site.postman
   - role: site.awscli
   - role: site.terraform
-  - role: gantsign.intellij
-  - role: cmprescott.chrome
   - role: site.tor
+  #--------------------------------------------------------------------------------
+  # IDEA (https://galaxy.ansible.com/gantsign/intellij)
+  #--------------------------------------------------------------------------------
+  - role: gantsign.intellij
+  #--------------------------------------------------------------------------------
+  # Chrome (https://galaxy.ansible.com/cmprescott/chrome)
+  #--------------------------------------------------------------------------------
+  - role: cmprescott.chrome
   #--------------------------------------------------------------------------------
   # VMWare workstation
   #--------------------------------------------------------------------------------
@@ -20,6 +26,7 @@
   #     workstation_license: "{{ vmware_workstation_license }}"
   #--------------------------------------------------------------------------------
   # R (https://github.com/Oefenweb/ansible-r)
+  # NOTE: Ubuntu only
   #--------------------------------------------------------------------------------
   - role: oefenweb_r
     vars:
@@ -34,5 +41,11 @@
           type: github
   #--------------------------------------------------------------------------------
   # R Server (https://github.com/Oefenweb/ansible-rstudio-server)
+  # NOTE: Ubuntu only
   #--------------------------------------------------------------------------------
   - role: oefenweb_rstudio_server
+  #--------------------------------------------------------------------------------
+  # Anaconda
+  # https://galaxy.ansible.com/andrewrothstein/anaconda
+  #--------------------------------------------------------------------------------
+  - role: andrewrothstein.anaconda

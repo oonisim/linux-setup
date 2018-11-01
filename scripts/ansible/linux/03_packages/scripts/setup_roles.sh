@@ -6,6 +6,7 @@ roles=(
     "gantsign.intellij"
     "cmprescott.chrome"
     "vmware.vmware-workstation"
+    "andrewrothstein.anaconda"
 )
 
 for role in "${roles[@]}"
