@@ -19,7 +19,7 @@ read
 #export CONF_DIR=${DIR}/conf/ansible
 #export TOOL_DIR=${DIR}/tools
 export SCRIPT_BASE=${DIR}/scripts/ansible
-export SCRIPT_SET=linux
+export SCRIPT_SET=linux_personal
 export SCRIPT_DIR=${SCRIPT_BASE}/${SCRIPT_SET}
 
 #--------------------------------------------------------------------------------
