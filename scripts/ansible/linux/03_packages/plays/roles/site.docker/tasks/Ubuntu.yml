@@ -10,7 +10,7 @@
 
 - name: Add an docker CE apt key
   apt_key:
-    uru: "{{ apt_key_url_docker_ce }}"
+    url: "{{ apt_key_url_docker_ce }}"
     id:  "{{ apt_key_docker_ce }}"
 
 - name: Add the docker CE repository to source list
