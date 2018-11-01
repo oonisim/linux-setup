@@ -9,15 +9,6 @@
     name: "{{ DOCKER_GROUP }}"
     state: present
 
-- name: "Adding user to {{ DOCKER_GROUP }} group"
-  user:
-    name:   "{{ item }}"
-    groups: "{{ DOCKER_GROUP }}"
-    append: "yes"                 # useradd -aG
-  with_items:
-  - "{{ DOCKER_USERS }}"
-
-
 - include_vars:  "{{ ansible_distribution }}.yml"
 - include_tasks: "{{ ansible_distribution }}.yml"
 
