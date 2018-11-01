@@ -4,7 +4,6 @@
   any_errors_fatal: true
   become: yes
   roles:
-  - role: site.ansible
   - role: site.common
   - role: site.java
   - role: site.sbt
