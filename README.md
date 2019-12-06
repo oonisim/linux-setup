@@ -2,8 +2,7 @@ Linux setup with Ansible
 =========
 Setup Linux environment after Linux distribution installation.
 
-
-#### Module and structure
+# Module and structure
 
 Module is a set of playbooks and roles to execute a specific task e.g. 03_packages is to install packages with the package manager of the disribution (apt for Ubuntu). Each module directory has the same structure having Readme, Plays, and Scripts.
 ```
@@ -29,41 +28,64 @@ Module is a set of playbooks and roles to execute a specific task e.g. 03_packag
 ```
 ---
 
-Preparations
-------------
+# Preparations
+
+## Ansible master
 ### MacOS
 To be able to user [realpath](https://stackoverflow.com/questions/3572030/bash-script-absolute-path-with-osx).
 ```
 brew install coreutils
 ```
 
+### Python
+Ansible itself relies on Python. Python 3 (3.5 or later) support is after Ansible 2.5.
 
-#### Ansible
-Have Ansible (2.4.1 or later). If the host is RHEL/CentOS/Ubuntu, run below will do the job.
+### pip
+Make use of the user site packages instead of system site packages.
 
+Install Ansible relies on pip. See [PyPA pip installation](https://pip.pypa.io/en/stable/installing/).
+pip installation is looked after in the 01_prerequisite module setup.sh via get-pip.py.
 ```
-(cd ./deployment/ansible/linux/01_prerequisite/scripts && ./setup.sh)
+./scripts/ansible/linux_personal/01_prerequisite/scripts/setup.sh
 ```
 
-SSH server is not installed/enabled by default in some distriutions e.g. Ubuntu.
+### Ansible
+Ansible installation is looked after in the 01_prerequisite module setup.sh by calling pip installation.
+```
+./scripts/ansible/linux_personal/01_prerequisite/scripts/setup.sh
+```
 
-(cd ./deployment/ansible/linux/01_prerequisite/scripts && ./setup_.sh)
+### SSH
+#### Authorized Keys
+Setup ~/.ssh/authorized_keys in the target servers to be able to ssh into from the Ansible master.
 
+```aidl
+ssh-copy-id -i #{SSH_PRIVATE_KEY_PATH} ${REMOTE_USER}@${REMOTE_HOST}
+```
 
-
-#### SSH
-Configure ssh-agent and/or .ssh/config with the AWS SSH PEM to be able to SSH into the targets without providing pass phrase.
+#### Silent
+Configure ssh-agent and/or .ssh/config with the SSH key to be able to SSH into the targets without providing pass phrase.
 
 ```
 eval $(ssh-agent)
-ssh-add <AWS SSH pem>
+ssh-add <SSH key>
 ssh ${REMOTE_USER}@<server> sudo ls  # no prompt for asking password
-
 ```
 
-Let's try
-------------
+## Ansible targets
+### Ansible account
+Make sure to have an account to run ansible playbooks on the targets. Run the script on the targets which also looks after the authorized_key part.
 
+```aidl
+./scripts/ansible/linux_personal/01_prerequisite/scripts/setup_ansible_user.sh
+```
+### SSH
+#### SSH Server
+Run a SSH server and let it accept the public key authentication. May better to disable password authentication once key setup is done.
+
+
+
+# Run
 Run ./run.sh to run all at once or go through the configurations and executions step by step below.
 
 ---
@@ -81,13 +103,13 @@ Parameters for an environment are all isolated in group_vars of the environment 
 │   └── ansible
 │      ├── ansible.cfg
 │      └── inventories
-│           └── aws
+│           └── ${TARGET}
 │               ├── group_vars
 │               │   ├── all             <---- Configure properties in the 'all' group vars
 │               │   │   ├── server.yml  <---- Server parameters e.g. location of kubelet configuration file
 │               │   │   └── env.yaml
 │               └── inventory
-│                   └── hosts           <---- Target node(s) using tag values (set upon creating AWS env)
+│                   └── hosts           <---- Target node(s) using tag values (set upon creating env)
 ```
 
 
@@ -96,7 +118,7 @@ Set the default Linux account (centos for CentOS EC2) that can sudo without pass
 
 #### ENV_ID
 
-Set the inventory name _aws_ to ENV_ID in env.yml which is used to tag the configuration items in AWS (e.g. EC2). The tags are then used to identify configuration items that belong to the enviornment, e.g. EC2 dynamic inventory hosts.
+Set the ${TARGE} to ENV_ID in env.yml which is used to tag the configuration items in  (e.g. EC2). The tags are then used to identify configuration items that belong to the enviornment.
 
 
 ### Execution
@@ -112,7 +134,7 @@ In the directory, run run.sh.
 Alternatively, run each module one by one, and skip 10_datadog if not using.
 ```
 pushd ansible/linux/<module>/scripts && ./main.sh or
-ansible/linux/<module>/scripts/main.sh aws <ansible remote_user>
+ansible/linux/<module>/scripts/main.sh ${TARGET_ENVIRONMENT} ${REMOTE_USER}
 ```
 
 Modules are:
