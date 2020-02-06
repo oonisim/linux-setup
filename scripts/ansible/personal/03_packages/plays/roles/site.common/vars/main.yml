@@ -13,3 +13,5 @@ packages:
   - nano
   - git
   - openssh-server
+  - nodejs
+  - npm
