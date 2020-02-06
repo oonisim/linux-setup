@@ -9,14 +9,25 @@ httplib2
 #python-apt
 # --------------------------------------------------------------------------------
 
+# --------------------------------------------------------------------------------
 # Ansible
+# --------------------------------------------------------------------------------
 #ansible==2.7.1
 ansible==2.9.2
 
+# --------------------------------------------------------------------------------
 # AWS
-awscli
-
-#Other packages
-boto
+# [Dependencies]
+#         " python-boto : Depends: python-requests but it is not going to be installed",
+#          "               Depends: python:any (< 2.8)",
+#          "               Depends: python:any (>= 2.7.5-5~)",
+#          "               Depends: python-six but it is not going to be installed",
+#
+# 'requests' is required due to "Removing the vendored version of requests from Botocore"
+# https://aws.amazon.com/blogs/developer/removing-the-vendored-version-of-requests-from-botocore/
+# --------------------------------------------------------------------------------
+requests
+botocore
+boto3
 passlib
 

@@ -46,22 +46,22 @@ Make use of the user site packages instead of system site packages.
 Install Ansible relies on pip. See [PyPA pip installation](https://pip.pypa.io/en/stable/installing/).
 pip installation is looked after in the 01_prerequisite module setup.sh via get-pip.py.
 ```
-./scripts/ansible/linux_personal/01_prerequisite/scripts/setup.sh
+./scripts/ansible/personal/01_prerequisite/scripts/setup.sh
 ```
 
 ### Ansible
 Ansible installation is looked after in the 01_prerequisite module setup.sh by calling pip installation.
 ```
-./scripts/ansible/linux_personal/01_prerequisite/scripts/setup.sh
+./scripts/ansible/personal/01_prerequisite/scripts/setup.sh
+```
+
+#### Vault password
+Set the password to decrypt Ansible valut in the file.
+```
+~/.ansible/.vault_pass.txt
 ```
 
 ### SSH
-#### Authorized Keys
-Setup ~/.ssh/authorized_keys in the target servers to be able to ssh into from the Ansible master.
-
-```aidl
-ssh-copy-id -i #{SSH_PRIVATE_KEY_PATH} ${REMOTE_USER}@${REMOTE_HOST}
-```
 
 #### Silent
 Configure ssh-agent and/or .ssh/config with the SSH key to be able to SSH into the targets without providing pass phrase.
@@ -74,9 +74,9 @@ ssh ${REMOTE_USER}@<server> sudo ls  # no prompt for asking password
 
 ## AWS CLI
 
-AWS CLI is installed via pip as part of the python requirements. 
+AWS CLI is installed via pip.
 ```dtd
-scripts/ansible/personal/01_prerequisite/scripts/python_requirements
+scripts/ansible/personal/01_prerequisite/scripts/setup.sh
 ```
 
 
@@ -85,12 +85,18 @@ scripts/ansible/personal/01_prerequisite/scripts/python_requirements
 Make sure to have an account to run ansible playbooks on the targets. Run the script on the targets which also looks after the authorized_key part.
 
 ```aidl
-./scripts/ansible/linux_personal/01_prerequisite/scripts/setup_ansible_user.sh
+./scripts/ansible/personal/01_prerequisite/scripts/setup_ansible_user.sh
 ```
 ### SSH
 #### SSH Server
 Run a SSH server and let it accept the public key authentication. May better to disable password authentication once key setup is done.
 
+#### Authorized Keys
+Setup ~/.ssh/authorized_keys in the target servers to be able to ssh into from the Ansible master.
+
+```aidl
+ssh-copy-id -i ${SSH_PRIVATE_KEY_PATH} ${REMOTE_USER}@${REMOTE_HOST}
+```
 
 
 # Run

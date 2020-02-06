@@ -41,12 +41,16 @@
 - include_vars: Ubuntu.yml
   when: isUbuntu.rc == 0
 
-- name: Ubuntu apt-get update...
-  raw: apt-get -qy update
+- name: Ubuntu apt update...
+  raw: sudo dpkg --configure -a && apt-get -qy update && sudo apt-get -qy autoremove
+  when: isUbuntu.rc == 0
+
+- name: Ubuntu apt fix broken.
+  raw: sudo apt-get -qyf install --fix-broken
   when: isUbuntu.rc == 0
 
 - name: Ubuntu install Python packages...
-  raw: apt-get install -qy {{ item }} --reinstall
+  raw: apt-get install -fqy {{ item }} --reinstall
   with_items: "{{ python_packages }}"
   when: isUbuntu.rc == 0
 #      when: isUbuntu.rc == 0 and isPython.rc != 0

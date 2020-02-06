@@ -7,6 +7,9 @@ set -u
 
 USER='ansible'
 GROUP='ansible'
+
+# 'sudo' in Debian/Ubuntu
+# 'wheel' in Fedora/RHEL/CentOS
 SUDO_GROUP='sudo'
 
 #--------------------------------------------------------------------------------

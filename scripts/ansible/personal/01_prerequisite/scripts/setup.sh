@@ -46,10 +46,12 @@ echo "--------------------------------------------------------------------------
 _TMPDIR=$(mktemp -d)
 curl https://bootstrap.pypa.io/get-pip.py > ${_TMPDIR}/get-pip.py
 python3 ${_TMPDIR}/get-pip.py --user && rm -rf ${_TMPDIR}
-pip install -U pip --user
+${HOME}/.local/bin/pip3 install -U pip --user
 
 echo "--------------------------------------------------------------------------------"
 echo " Install/upgrade Ansible on master...                                           "
 echo "--------------------------------------------------------------------------------"
 #sudo -H pip install --no-cache-dir --user --upgrade --requirement "${DIR}/python_requirements"
 ${HOME}/.local/bin/pip3 install --no-cache-dir --user --upgrade --requirement "${DIR}/python_requirements"
+
+${HOME}/.local/bin/pip3 install --no-cache-dir --user --upgrade awscli

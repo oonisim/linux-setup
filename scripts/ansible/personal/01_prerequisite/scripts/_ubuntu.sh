@@ -8,6 +8,15 @@ sudo apt install -y apt-file
 #================================================================================
 # Python
 #================================================================================
+
+# --------------------------------------------------------------------------------
+# To avoid build-essential : Depends: dpkg-dev (>= 1.17.11) but it is not going to be installed
+# https://askubuntu.com/questions/484750/why-build-essential-failed
+# --------------------------------------------------------------------------------
+sudo apt-get remove --purge libdpkg-perl -y
+sudo apt install -y libdpkg-perl
+
+# Ansible dependencies
 sudo apt install -y build-essential libssl-dev libffi-dev python-dev python-setuptools cowsay
 
 # --------------------------------------------------------------------------------
@@ -40,6 +49,7 @@ sudo apt-get install -y python3-distutils
 # To avoid ERROR: launchpadlib 1.10.6 requires testresources, which is not installed.
 # --------------------------------------------------------------------------------
 sudo apt install -y python3-testresources
+
 
 #================================================================================
 # SSH

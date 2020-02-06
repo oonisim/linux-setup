@@ -7,21 +7,21 @@
   - role: site.common
   - role: site.java
   - role: site.sbt
+  #--------------------------------------------------------------------------------
+  # Use user-site for python packages
   #- role: site.awscli
   #- role: site.ansible
+  #--------------------------------------------------------------------------------
   - role: site.terraform
+  - role: site.tor
+  - role: site.chrome
   - role: site.postman
   - role: site.docker
-  #- role: site.tor
-  - role: site.chrome
   #--------------------------------------------------------------------------------
+  # Use ditribution way e.g. Ubuntu software center
   # IDEA (https://galaxy.ansible.com/gantsign/intellij)
   #--------------------------------------------------------------------------------
   #- role: gantsign.intellij
-  #--------------------------------------------------------------------------------
-  # Chrome (https://galaxy.ansible.com/cmprescott/chrome)
-  #--------------------------------------------------------------------------------
-  # - role: cmprescott.chrome
   #--------------------------------------------------------------------------------
   # VMWare workstation
   #--------------------------------------------------------------------------------
