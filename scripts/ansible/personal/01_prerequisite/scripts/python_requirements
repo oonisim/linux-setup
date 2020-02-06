@@ -13,6 +13,10 @@ httplib2
 #ansible==2.7.1
 ansible==2.9.2
 
+# AWS
+awscli
+
 #Other packages
 boto
 passlib
+

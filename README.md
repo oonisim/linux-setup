@@ -72,6 +72,14 @@ ssh-add <SSH key>
 ssh ${REMOTE_USER}@<server> sudo ls  # no prompt for asking password
 ```
 
+## AWS CLI
+
+AWS CLI is installed via pip as part of the python requirements. 
+```dtd
+scripts/ansible/personal/01_prerequisite/scripts/python_requirements
+```
+
+
 ## Ansible targets
 ### Ansible account
 Make sure to have an account to run ansible playbooks on the targets. Run the script on the targets which also looks after the authorized_key part.
