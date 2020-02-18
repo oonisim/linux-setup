@@ -42,7 +42,15 @@ Make sure to have an account to run ansible playbooks on the targets. Run the sc
 ```aidl
 ./scripts/ansible/personal/01_prerequisite/scripts/setup_ansible_user.sh
 ```
+
+#### pip
+pip needs to be available for the ansible account to use Ansible pip module.
+
+**Tried to use ansible user local pip but did not work. Hence using system pip.**
+
+
 <br/>
+
 
 ## Ansible master
 ### MacOS
