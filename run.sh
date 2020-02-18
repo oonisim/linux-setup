@@ -15,14 +15,9 @@ echo "Make sure SSH keys have been ceated and ssh agent & add have been executed
 echo "Type any key to proceed..."
 read
 
-#--------------------------------------------------------------------------------
-# Global directories
-#--------------------------------------------------------------------------------
-#export CONF_DIR=${DIR}/conf/ansible
-#export TOOL_DIR=${DIR}/tools
-export SCRIPT_BASE=${DIR}/scripts/ansible
-export SCRIPT_SET=personal
-export SCRIPT_DIR=${SCRIPT_BASE}/${SCRIPT_SET}
+echo "Which Ansible inventory (target environment) to use?"
+read TARGET_INVENTORY
+
 
 #--------------------------------------------------------------------------------
 # Target environment/inventory and Ansibe remote_user to use
@@ -40,6 +35,15 @@ if [ -z ${REMOTE_USER+x} ]; then
 else
     echo "REMOTE_USER is ${REMOTE_USER}"
 fi
+
+
+#--------------------------------------------------------------------------------
+# Global directories
+#--------------------------------------------------------------------------------
+#export CONF_DIR=${DIR}/conf/ansible
+#export TOOL_DIR=${DIR}/tools
+export SCRIPT_BASE=${DIR}/scripts/ansible
+export SCRIPT_DIR=${SCRIPT_BASE}/${TARGET_INVENTORY}
 
 #--------------------------------------------------------------------------------
 # Run setup

@@ -18,6 +18,10 @@
   - role: site.postman
   - role: site.docker
   #--------------------------------------------------------------------------------
+  # Python packages should be installed per-user basis with --user.
+  #--------------------------------------------------------------------------------
+  #- role: site.awscli
+  #--------------------------------------------------------------------------------
   # Use ditribution way e.g. Ubuntu software center
   # IDEA (https://galaxy.ansible.com/gantsign/intellij)
   #--------------------------------------------------------------------------------

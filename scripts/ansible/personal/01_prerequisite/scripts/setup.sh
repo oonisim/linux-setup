@@ -54,4 +54,4 @@ echo "--------------------------------------------------------------------------
 #sudo -H pip install --no-cache-dir --user --upgrade --requirement "${DIR}/python_requirements"
 ${HOME}/.local/bin/pip3 install --no-cache-dir --user --upgrade --requirement "${DIR}/python_requirements"
 
-${HOME}/.local/bin/pip3 install --no-cache-dir --user --upgrade awscli
+echo "Set ~/.local/bin to PATH environment variable"

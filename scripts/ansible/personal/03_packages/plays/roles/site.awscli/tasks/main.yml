@@ -1,3 +1,5 @@
+# Python packages should be installed per-user basis with --user.
+
 #--------------------------------------------------------------------------------
 # AWS CLI installation (global site-package)
 # https://pypi.org/project/awscli/

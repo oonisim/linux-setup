@@ -30,6 +30,20 @@ Module is a set of playbooks and roles to execute a specific task e.g. 03_packag
 
 # Preparations
 
+## Ansible targets
+
+### SSH
+#### SSH Server
+Run a SSH server and let it accept the public key authentication. May better to disable password authentication once key setup is done.
+
+### Ansible account
+Make sure to have an account to run ansible playbooks on the targets. Run the script on the targets which also looks after the authorized_key part.
+
+```aidl
+./scripts/ansible/personal/01_prerequisite/scripts/setup_ansible_user.sh
+```
+<br/>
+
 ## Ansible master
 ### MacOS
 To be able to user [realpath](https://stackoverflow.com/questions/3572030/bash-script-absolute-path-with-osx).
@@ -38,7 +52,7 @@ brew install coreutils
 ```
 
 ### Python
-Ansible itself relies on Python. Python 3 (3.5 or later) support is after Ansible 2.5.
+Ansible itself relies on Python. Use Python 3 as Python 2 is end of support.
 
 ### pip
 Make use of the user site packages instead of system site packages.
@@ -61,6 +75,15 @@ Set the password to decrypt Ansible valut in the file.
 ~/.ansible/.vault_pass.txt
 ```
 
+#### Auto-login to Ansible targets
+
+```aidl
+ssh-copy-id -i ${SSH_PRIVATE_KEY_PATH} ${REMOTE_USER}@${REMOTE_HOST}
+```
+
+This will setup ~/.ssh/authorized_keys in the target servers so that the ansible master to be able to ssh into.
+
+
 ### SSH
 
 #### Silent
@@ -70,32 +93,6 @@ Configure ssh-agent and/or .ssh/config with the SSH key to be able to SSH into t
 eval $(ssh-agent)
 ssh-add <SSH key>
 ssh ${REMOTE_USER}@<server> sudo ls  # no prompt for asking password
-```
-
-## AWS CLI
-
-AWS CLI is installed via pip.
-```dtd
-scripts/ansible/personal/01_prerequisite/scripts/setup.sh
-```
-
-
-## Ansible targets
-### Ansible account
-Make sure to have an account to run ansible playbooks on the targets. Run the script on the targets which also looks after the authorized_key part.
-
-```aidl
-./scripts/ansible/personal/01_prerequisite/scripts/setup_ansible_user.sh
-```
-### SSH
-#### SSH Server
-Run a SSH server and let it accept the public key authentication. May better to disable password authentication once key setup is done.
-
-#### Authorized Keys
-Setup ~/.ssh/authorized_keys in the target servers to be able to ssh into from the Ansible master.
-
-```aidl
-ssh-copy-id -i ${SSH_PRIVATE_KEY_PATH} ${REMOTE_USER}@${REMOTE_HOST}
 ```
 
 
@@ -160,3 +157,10 @@ Modules are:
 └── player.sh            <---- Playbook player
 ```
 
+# Post setup
+
+#### PATH
+Add "./local/bin" to the PATH environment variable for Python user site packages.
+
+#### Docker
+Add those users who run docker commands in **docker** group if required (consider the security risk).

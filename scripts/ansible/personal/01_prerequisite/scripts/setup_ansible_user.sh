@@ -8,9 +8,27 @@ set -u
 USER='ansible'
 GROUP='ansible'
 
-# 'sudo' in Debian/Ubuntu
-# 'wheel' in Fedora/RHEL/CentOS
-SUDO_GROUP='sudo'
+
+echo "--------------------------------------------------------------------------------"
+echo " Install pre-requisite packages for Ansible on master (Not target)...           "
+echo "--------------------------------------------------------------------------------"
+system=$(uname)
+if [ "$system" == "Linux" ]; then
+    #lsb_release may not be installed in RedHat/CentOS
+    #distro=$(lsb_release -i)
+    distro=$(cat /etc/os-release | grep '^NAME=' | sed -n 's/^NAME=\"\(.*\)\"$/\1/p')
+    if [[ ${distro:0:3} == "Ubu" ]] || [[ $distro == "Deb" ]] ;then
+      # 'sudo' in Debian/Ubuntu
+      # 'wheel' in Fedora/RHEL/CentOS
+      SUDO_GROUP='sudo'
+    elif [[ ${distro:0:3} == "Red" ]] || [[ $distro == "Cen" ]] ;then
+      SUDO_GROUP='wheel'
+    else
+        msg_exit "Your linux system was not tested"
+        exit -1
+    fi
+fi
+
 
 #--------------------------------------------------------------------------------
 # Account setup
