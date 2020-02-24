@@ -1,0 +1,16 @@
+- name: "Check if package {{ drawio_package_name }} is installed"
+  command: dpkg-query -W {{ drawio_package_name }}
+  register: drawio_check_deb
+  failed_when: drawio_check_deb.rc > 1
+  changed_when: drawio_check_deb.rc == 1
+
+- name: "Download {{ drawio_package_name }}"
+  get_url:
+    url="{{ drawio_package_url }}"
+    dest="/home/{{ ansible_user }}/{{ drawio_package_name }}.{{ drawio_package_format }}
+  when: drawio_check_deb.rc == 1
+
+- name: "Install {{ drawio_package_name }}"
+  apt: deb="/home/{{ ansible_user }}/{{ drawio_package_name }}.{{drawio_package_format}}"
+  become: yes
+  when: drawio_check_deb.rc == 1
