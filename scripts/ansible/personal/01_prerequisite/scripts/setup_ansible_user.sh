@@ -41,13 +41,14 @@ fi
 if [ $(getent passwd ${USER}) ]; then
   echo "user ${USER} exists."
 else
+  echo "Creating the Ansible account ${USER} in the group ${GROUP}..."
   sudo useradd -m -s /bin/bash -G ${SUDO_GROUP} -g ${GROUP} ${USER}
 fi
 
 #--------------------------------------------------------------------------------
 # SSH public authentication setup
 #--------------------------------------------------------------------------------
-echo "Provide public key text>"
+echo "Provide public key text of the keypair that the ${USER} account to use to ssh login"
 read key
 
 AUTH_KEY_DIR="$(sudo -i -u ${USER} pwd)/.ssh"

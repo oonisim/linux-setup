@@ -8,6 +8,7 @@ sudo apt install -y apt-file
 #================================================================================
 # Python
 #================================================================================
+sudo apt install -y curl # to download get-pip.py
 
 # --------------------------------------------------------------------------------
 # To avoid build-essential : Depends: dpkg-dev (>= 1.17.11) but it is not going to be installed

@@ -38,6 +38,9 @@ if [ "$system" == "Linux" ]; then
     else
         msg_exit "Your linux system was not test"
     fi
+elif [ "$system" == "Darwin" ]; then
+    echo "Mac has not been implemented yet. Abort"
+    exit -1
 fi
 
 echo "--------------------------------------------------------------------------------"
