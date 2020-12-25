@@ -6,6 +6,7 @@ docker_prerequisites:
   - apt-transport-https
   - ca-certificates
   - software-properties-common
+  - gnupg-agent
 
 docker_packages:
   - apt-transport-https

@@ -30,16 +30,16 @@ Module is a set of playbooks and roles to execute a specific task e.g. 03_packag
 
 # Preparations
 
-## Ansible targets
+## On Ansible target hosts
 
 ### SSH
 #### SSH Server
 Run a SSH server and let it accept the public key authentication. May better to disable password authentication once key setup is done.
 
 ### Ansible account
-Make sure to have an account to run ansible playbooks on the targets. Run the script on the targets which also looks after the authorized_key part.
+Make sure to have an account to run ansible playbooks on the targets. Run the script on the targets which also looks after the authorized_key part. It will ask for SSH public key to be able to login as the ansible account. Prepare it in advance.
 
-```aidl
+```
 ./scripts/ansible/personal/01_prerequisite/scripts/setup_ansible_user.sh
 ```
 
@@ -48,11 +48,15 @@ pip needs to be available for the ansible account to use Ansible pip module.
 
 **Tried to use ansible user local pip but did not work. Hence using system pip.**
 
+For instance, to install pip3 on Ubuntu.
+```
+apt install -fqy python3-pip
+```
 
 <br/>
 
 
-## Ansible master
+## On Ansible master host
 ### MacOS
 To be able to user [realpath](https://stackoverflow.com/questions/3572030/bash-script-absolute-path-with-osx).
 ```
@@ -63,7 +67,6 @@ brew install coreutils
 Ansible itself relies on Python. Use Python 3 as Python 2 is end of support.
 
 ### pip
-Make use of the user site packages instead of system site packages.
 
 Install Ansible relies on pip. See [PyPA pip installation](https://pip.pypa.io/en/stable/installing/).
 pip installation is looked after in the 01_prerequisite module setup.sh via get-pip.py.

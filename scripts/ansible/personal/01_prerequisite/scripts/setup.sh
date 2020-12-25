@@ -44,12 +44,13 @@ elif [ "$system" == "Darwin" ]; then
 fi
 
 echo "--------------------------------------------------------------------------------"
-echo "Installing/updating pip"
+echo "Installing/updating pip."
 echo "--------------------------------------------------------------------------------"
-_TMPDIR=$(mktemp -d)
-curl https://bootstrap.pypa.io/get-pip.py > ${_TMPDIR}/get-pip.py
-python3 ${_TMPDIR}/get-pip.py --user && rm -rf ${_TMPDIR}
-${HOME}/.local/bin/pip3 install -U pip --user
+# 25 DEC 2020. Ansible pip will be disabled somehow. As long as stick to virtual environment, should not be required.
+#_TMPDIR=$(mktemp -d)
+#curl https://bootstrap.pypa.io/get-pip.py > ${_TMPDIR}/get-pip.py
+#python3 ${_TMPDIR}/get-pip.py --user && rm -rf ${_TMPDIR}
+#${HOME}/.local/bin/pip3 install -U pip --user
 
 echo "--------------------------------------------------------------------------------"
 echo " Install/upgrade Ansible on master...                                           "

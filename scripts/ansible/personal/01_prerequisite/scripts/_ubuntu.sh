@@ -25,7 +25,7 @@ sudo apt install -y build-essential libssl-dev libffi-dev python-dev python-setu
 # https://stackoverflow.com/questions/49836676/error-after-upgrading-pip-cannot-import-name-main
 # --------------------------------------------------------------------------------
 sudo python3 -m pip uninstall -y pip && sudo apt install -y python3-pip --reinstall
-sudo python -m pip uninstall -y pip && sudo apt install -y python-pip --reinstall
+#sudo python -m pip uninstall -y pip && sudo apt install -y python-pip --reinstall
 #sudo apt install -y python-pip
 # --------------------------------------------------------------------------------
 

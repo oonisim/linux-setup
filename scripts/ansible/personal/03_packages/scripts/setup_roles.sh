@@ -8,9 +8,9 @@ _ROLE_DIR="${_DIR}/../plays/roles"
 #    "vmware.vmware-workstation"
 #    "andrewrothstein.anaconda"
 #)
-roles=(
-    "vmware.vmware-workstation"
-)
+#roles=(
+#    "vmware.vmware-workstation"
+#)
 
 for role in "${roles[@]}"
 do

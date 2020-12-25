@@ -16,7 +16,7 @@
   - role: site.postman
   - role: site.docker
   - role: site.tor
-  - role: site.chrome
+  #- role: site.chrome
   - role: site.drawio
   #--------------------------------------------------------------------------------
   # Python packages should be installed per-user basis with --user.

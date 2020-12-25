@@ -1,6 +1,7 @@
 dist_packages:
   - dnsutils
-  - cgroup-bin
+  # Removed in Ubutnu 19 as in https://github.com/ansible-community/ansible-nomad/issues/75
+  #- cgroup-bin
   - cgroup-lite
   - cgroup-tools
   - cgroupfs-mount
