@@ -2,7 +2,8 @@
 # Ansible
 # --------------------------------------------------------------------------------
 #ansible==2.7.1
-ansible==2.9.16
+#ansible==2.9.16
+ansible>=2.11.0
 
 # --------------------------------------------------------------------------------
 # Required python packages for ansible
@@ -28,4 +29,5 @@ boto3
 passlib
 six
 python-dateutil
-awscli
+# AWC CLI installation method changed from pip to Linux distribution package management 
+#awscli

@@ -86,15 +86,6 @@ Set the password to decrypt Ansible valut in the file.
 ~/.ansible/.vault_pass.txt
 ```
 
-#### Auto-login to Ansible targets
-
-```aidl
-ssh-copy-id -i ${SSH_PRIVATE_KEY_PATH} ${REMOTE_USER}@${REMOTE_HOST}
-```
-
-This will setup ~/.ssh/authorized_keys in the target servers so that the ansible master to be able to ssh into.
-
-
 ### SSH
 
 #### Silent
@@ -105,6 +96,14 @@ eval $(ssh-agent)
 ssh-add <SSH key>
 ssh ${REMOTE_USER}@<server> sudo ls  # no prompt for asking password
 ```
+
+#### Auto-login to Ansible targets
+Verify the user account executing the Ansible playbooks can login to the Ansible targets without the password.
+```
+ssh ${REMOTE_USER}@${REMOTE_HOST}
+```
+
+This will verify ~/.ssh/authorized_keys in the target servers so that the ansible master to be able to ssh into.
 
 
 # Run

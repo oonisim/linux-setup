@@ -46,11 +46,13 @@ fi
 echo "--------------------------------------------------------------------------------"
 echo "Installing/updating pip."
 echo "--------------------------------------------------------------------------------"
-# 25 DEC 2020. Ansible pip will be disabled somehow. As long as stick to virtual environment, should not be required.
-#_TMPDIR=$(mktemp -d)
-#curl https://bootstrap.pypa.io/get-pip.py > ${_TMPDIR}/get-pip.py
-#python3 ${_TMPDIR}/get-pip.py --user && rm -rf ${_TMPDIR}
-#${HOME}/.local/bin/pip3 install -U pip --user
+# 25 DEC 2020. Ansible pip will be disabled somehow. 
+_TMPDIR=$(mktemp -d)
+curl https://bootstrap.pypa.io/get-pip.py > ${_TMPDIR}/get-pip.py
+python3 ${_TMPDIR}/get-pip.py --user && rm -rf ${_TMPDIR}
+${HOME}/.local/bin/pip3 install -U pip --user
+echo "Setting ~/.local/bin to PATH environment variable"
+echo -e '\nexport PATH=~/.local/bin:$PATH' >> $HOME/.bashrc && source $HOME/.bashrc
 
 echo "--------------------------------------------------------------------------------"
 echo " Install/upgrade Ansible on master...                                           "
@@ -58,4 +60,5 @@ echo "--------------------------------------------------------------------------
 #sudo -H pip install --no-cache-dir --user --upgrade --requirement "${DIR}/python_requirements"
 ${HOME}/.local/bin/pip3 install --no-cache-dir --user --upgrade --requirement "${DIR}/python_requirements"
 
-echo "Set ~/.local/bin to PATH environment variable"
+touch ~/.ansible/.vault_pass.txt
+chmod go-rwx ~/.ansible/.vault_pass.txt
