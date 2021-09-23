@@ -60,7 +60,7 @@ sudo -i -u ${USER} grep -q -F "${key}" ${AUTH_KEY_FILE}
 if [ $? -ne 0  ]; then
    sudo -i -u ${USER} /bin/bash -c "echo ${key} >> ${AUTH_KEY_FILE}"
 fi
-sed -i -e '$a\' ${AUTH_KEY_FILE}
+# sed -i -e '$a\' ${AUTH_KEY_FILE}
 sudo -i -u ${USER} chmod -R go-rwx ${AUTH_KEY_DIR}
 
 #--------------------------------------------------------------------------------
