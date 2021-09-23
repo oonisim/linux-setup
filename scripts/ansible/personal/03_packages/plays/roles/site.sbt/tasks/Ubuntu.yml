@@ -3,6 +3,11 @@
     keyserver: "{{ apt_key_server_sbt }}"
     id: "{{ apt_key_sbt }}"
 
+#--------------------------------------------------------------------------------
+# SBT repository for Debian
+# https://www.scala-sbt.org/1.x/docs/Installing-sbt-on-Linux.html
+# https://github.com/sbt/sbt/issues/6294
+#--------------------------------------------------------------------------------
 - name: Add the SBT repository to source list
   apt_repository:
     repo: "{{ apt_repository_sbt }}"
