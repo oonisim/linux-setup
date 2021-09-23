@@ -11,6 +11,9 @@ _ROLE_DIR="${_DIR}/../plays/roles"
 #roles=(
 #    "vmware.vmware-workstation"
 #)
+roles=(
+  "ansible.install-gcloud"
+)
 
 for role in "${roles[@]}"
 do

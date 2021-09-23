@@ -1,5 +1,5 @@
 ---
-- name: package installations
+- name: site package installations
   hosts: environment
   any_errors_fatal: true
   become: yes
@@ -58,3 +58,20 @@
   # https://galaxy.ansible.com/andrewrothstein/anaconda
   #--------------------------------------------------------------------------------
   #- role: andrewrothstein.anaconda
+
+- name: Galaxy package installations
+  hosts: localhost
+  connection: local
+  any_errors_fatal: true
+  become: true
+  become_user: "{{ USER }}"
+  roles:
+  #--------------------------------------------------------------------------------
+  # Google Cloud SDK
+  # TODO: Need to fix to be platform aware
+  # https://cloud.google.com/sdk/docs/install
+  # https://galaxy.ansible.com/ansible/install-gcloud
+  #--------------------------------------------------------------------------------
+  - role: ansible.install-gcloud
+    gcloud_archive_name: "google-cloud-sdk-358.0.0-linux-x86_64.tar.gz"
+    gcloud_tmp_path: /tmp
