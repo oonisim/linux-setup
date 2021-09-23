@@ -43,18 +43,6 @@ Make sure to have an account to run ansible playbooks on the targets. Run the sc
 ./scripts/ansible/personal/01_prerequisite/scripts/setup_ansible_user.sh
 ```
 
-#### pip
-pip needs to be available for the ansible account to use Ansible pip module.
-
-**Tried to use ansible user local pip but did not work. Hence using system pip.**
-
-For instance, to install pip3 on Ubuntu.
-```
-apt install -fqy python3-pip
-```
-
-<br/>
-
 
 ## On Ansible master host
 ### MacOS
@@ -76,12 +64,15 @@ pip installation is looked after in the 01_prerequisite module setup.sh via get-
 
 ### Ansible
 Ansible installation is looked after in the 01_prerequisite module setup.sh by calling pip installation.
+
+See [Installing and upgrading Ansible with pi](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-and-upgrading-ansible-with-pip).
+
 ```
 ./scripts/ansible/personal/01_prerequisite/scripts/setup.sh
 ```
 
 #### Vault password
-Set the password to decrypt Ansible valut in the file.
+In the file, set the password to decrypt the Ansible vault.
 ```
 ~/.ansible/.vault_pass.txt
 ```

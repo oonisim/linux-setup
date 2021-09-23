@@ -2,6 +2,7 @@
 This module is to setup the ansible pre-requisites on the ansible master and the target nodes.
 
 ## Structure
+```
 .
 ├── Readme.md
 ├── plays
@@ -15,7 +16,7 @@ This module is to setup the ansible pre-requisites on the ansible master and the
     ├── setup.sh              <----- Setup the ansible master to be able to execute Ansible
     ├── setup_ansible_user.sh <----- Setup the ansible remote user to ssh into the target
     └── main.sh               <----- Setup the target nodes
-
+```
 
 ## setup_ansible_user.sh
 
