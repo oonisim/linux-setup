@@ -58,3 +58,8 @@ sudo apt install -y python3-testresources
 sudo apt update
 sudo apt install -y openssh-server
 sudo systemctl enable --now ssh
+
+#================================================================================
+# Misc
+#================================================================================
+sudo apt install -y gnome-tweak-tool
