@@ -55,10 +55,15 @@ echo "Setting ~/.local/bin to PATH environment variable"
 echo -e '\nexport PATH=~/.local/bin:$PATH' >> $HOME/.bashrc && source $HOME/.bashrc
 
 echo "--------------------------------------------------------------------------------"
-echo " Install/upgrade Ansible on master...                                           "
+echo "Install/upgrade Ansible on master...                                           "
 echo "--------------------------------------------------------------------------------"
 #sudo -H pip install --no-cache-dir --user --upgrade --requirement "${DIR}/python_requirements"
 ${HOME}/.local/bin/pip3 install --no-cache-dir --user --upgrade --requirement "${DIR}/python_requirements"
 
+echo "--------------------------------------------------------------------------------"
+echo "Setting up a dummy valut password. Update ~/.ansible/.vault_pass.txt with the correct password to decrypt the value."
+echo "--------------------------------------------------------------------------------"
+mkdir -p ~/.ansible/
 touch ~/.ansible/.vault_pass.txt
+echo "dummy" > ~/.ansible/.vault_pass.txt
 chmod go-rwx ~/.ansible/.vault_pass.txt
