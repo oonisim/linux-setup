@@ -30,11 +30,16 @@ Module is a set of playbooks and roles to execute a specific task e.g. 03_packag
 
 # Preparations
 
+## SSH private/public key
+
+Create SSH private/public key pair to use SSH login form the Ansible master to the target hosts. 
+
+
 ## On Ansible target hosts
 
 ### SSH
 #### SSH Server
-Run a SSH server and let it accept the public key authentication. May better to disable password authentication once key setup is done.
+Run the SSH server and let it accept the public key authentication. May better to disable password authentication once key setup is done.
 
 ### Ansible account
 Make sure to have an account to run ansible playbooks on the targets. Run the script on the targets which also looks after the authorized_key part. It will ask for SSH public key to be able to login as the ansible account. Prepare it in advance.
@@ -78,6 +83,10 @@ In the file, set the password to decrypt the Ansible vault.
 ```
 
 ### SSH
+
+#### Private key
+
+Place the SSH private key under ~/.ssh directory.
 
 #### Silent
 Configure ssh-agent and/or .ssh/config with the SSH key to be able to SSH into the targets without providing pass phrase.
